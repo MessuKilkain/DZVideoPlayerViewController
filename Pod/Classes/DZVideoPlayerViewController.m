@@ -359,7 +359,7 @@ static const NSString *PlayerStatusContext;
     [self startIdleCountdown];
 }
 
-- (void)seek:(UISlider *)slider {
+- (void)seek:(DZProgressIndicatorSlider *)slider {
     if( self.playerItem != nil ) {
         int timescale = self.playerItem.asset.duration.timescale;
         if( timescale > 0 ) {
@@ -612,9 +612,11 @@ static const NSString *PlayerStatusContext;
     [self.fullscreenShrinkButton addTarget:self action:@selector(toggleFullscreen:) forControlEvents:UIControlEventTouchUpInside];
     [self.fullscreenExpandButton addTarget:self action:@selector(toggleFullscreen:) forControlEvents:UIControlEventTouchUpInside];
     
+#if !TARGET_OS_TV
     [self.progressIndicator addTarget:self action:@selector(seek:) forControlEvents:UIControlEventValueChanged];
     [self.progressIndicator addTarget:self action:@selector(startSeeking:) forControlEvents:UIControlEventTouchDown];
     [self.progressIndicator addTarget:self action:@selector(endSeeking:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
+#endif
     
     [self.doneButton addTarget:self action:@selector(onDoneButtonTouched) forControlEvents:UIControlEventTouchUpInside];
 }

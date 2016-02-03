@@ -72,7 +72,7 @@
 
 - (void)toggleFullscreen:(id)sender;
 
-- (void)seek:(UISlider *)slider;
+- (void)seek:(DZProgressIndicatorSlider *)slider;
 
 - (void)seekToTime:(NSTimeInterval)newPlaybackTime;
 

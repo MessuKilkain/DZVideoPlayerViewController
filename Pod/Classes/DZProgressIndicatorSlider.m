@@ -36,7 +36,12 @@
 }
 
 - (void)commonInit {
+#if !TARGET_OS_TV
     [self setMaximumTrackTintColor:[UIColor clearColor]];
+#else
+    [self setBackgroundColor:[UIColor clearColor]];
+    [[self layer] setCornerRadius:1.0];
+#endif
     
     [[self.progressView layer] setCornerRadius:1.0f];
     
@@ -44,6 +49,18 @@
     [[self tintColor] getHue:&hue saturation:&sat brightness:&bri alpha:nil];
     [self.progressView setTintColor:[UIColor colorWithHue:hue saturation:(sat * 0.6f) brightness:bri alpha:1]];
 }
+
+#if TARGET_OS_TV
+- (void)setValue:(float)value {
+    [self setProgress:value];
+}
+- (void)setValue:(float)value animated:(BOOL)animated {
+    [self setProgress:value animated:animated];
+}
+- (float)value {
+    return [self progress];
+}
+#endif
 
 - (void)setTintColor:(UIColor *)tintColor {
     [super setTintColor:tintColor];

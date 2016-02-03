@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#if TARGET_OS_TV
+@interface DZProgressIndicatorSlider : UIProgressView
+-(void)setValue:(float)value;
+-(void)setValue:(float)value animated:(BOOL)animated;
+-(float)value;
+#else
 @interface DZProgressIndicatorSlider : UISlider
+#endif
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
