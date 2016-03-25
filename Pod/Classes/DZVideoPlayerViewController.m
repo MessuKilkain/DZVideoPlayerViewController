@@ -619,6 +619,16 @@ static const NSString *PlayerStatusContext;
 #endif
     
     [self.doneButton addTarget:self action:@selector(onDoneButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    
+#if TARGET_OS_TV
+    [self.playButton addTarget:self action:@selector(play) forControlEvents:UIControlEventPrimaryActionTriggered];
+    [self.pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventPrimaryActionTriggered];
+    
+    [self.fullscreenShrinkButton addTarget:self action:@selector(toggleFullscreen:) forControlEvents:UIControlEventPrimaryActionTriggered];
+    [self.fullscreenExpandButton addTarget:self action:@selector(toggleFullscreen:) forControlEvents:UIControlEventPrimaryActionTriggered];
+    
+    [self.doneButton addTarget:self action:@selector(onDoneButtonTouched) forControlEvents:UIControlEventPrimaryActionTriggered];
+#endif
 }
 
 - (void)resignKVO {
