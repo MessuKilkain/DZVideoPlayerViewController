@@ -468,7 +468,7 @@ static const NSString *PlayerStatusContext;
     }
     else
     {
-        [UIView animateWithDuration:0.3f animations:^{
+        [UIView animateWithDuration:animationDuration animations:^{
             for (UIView *view in views) {
                 view.alpha = 0.0;
             }
