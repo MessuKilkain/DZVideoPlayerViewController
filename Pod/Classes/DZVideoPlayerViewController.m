@@ -480,7 +480,16 @@ static const NSString *PlayerStatusContext;
 - (void)showControls {
     [self showControlsWithAnimationDuration:0.3f];
 }
+- (void)showControlsWithIdleCountdown:(BOOL)idleCountdown {
+    [self showControlsWithIdleCountdown:idleCountdown animationDuration:0.3f];
+}
 - (void)showControlsWithAnimationDuration:(NSTimeInterval)animationDuration {
+    [self showControlsWithIdleCountdown:NO animationDuration:animationDuration];
+}
+- (void)showControlsWithIdleCountdown:(BOOL)idleCountdown animationDuration:(NSTimeInterval)animationDuration {
+    if( idleCountdown ) {
+      [self startIdleCountdown];
+    }
     NSArray *views = self.configuration.viewsToHideOnIdle;
     if( animationDuration <= 0 )
     {
@@ -507,6 +516,10 @@ static const NSString *PlayerStatusContext;
         [self hideControls];
     }
     [self stopIdleCountdown];
+}
+
+- (BOOL)areControlsHidden {
+    return self.isControlsHidden;
 }
 
 - (void)updateNowPlayingInfo {

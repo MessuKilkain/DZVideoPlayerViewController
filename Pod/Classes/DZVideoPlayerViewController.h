@@ -92,7 +92,13 @@
 
 - (void)showControls;
 
+- (void)showControlsWithIdleCountdown:(BOOL)idleCountdown;
+
 - (void)showControlsWithAnimationDuration:(NSTimeInterval)animationDuration;
+
+- (void)showControlsWithIdleCountdown:(BOOL)idleCountdown animationDuration:(NSTimeInterval)animationDuration;
+
+- (BOOL)areControlsHidden;
 
 - (void)updateNowPlayingInfo;
 
