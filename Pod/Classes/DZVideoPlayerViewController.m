@@ -256,6 +256,10 @@ static const NSString *PlayerStatusContext;
                     [self setupPlayer];
                 }
                 
+                if( self.activityIndicatorView ) {
+                  [self.activityIndicatorView stopAnimating];
+                }
+
                 if (playAutomatically) {
                     [self play];
                 }
