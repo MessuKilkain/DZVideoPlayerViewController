@@ -260,6 +260,8 @@ static const NSString *PlayerStatusContext;
                   [self.activityIndicatorView stopAnimating];
                 }
 
+                [self onSucceedToLoadAsset];
+
                 if (playAutomatically) {
                     [self play];
                 }
@@ -820,6 +822,12 @@ static const NSString *PlayerStatusContext;
 }
 
 #pragma mark - Delegate invocations
+
+- (void)onSucceedToLoadAsset {
+    if ([self.delegate respondsToSelector:@selector(playerSucceedToLoadAsset)]) {
+        [self.delegate playerSucceedToLoadAsset];
+    }
+}
 
 - (void)onFailedToLoadAssetWithError:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(playerFailedToLoadAssetWithError:)]) {

@@ -12,6 +12,7 @@
 
 @optional
 
+- (void)playerSucceedToLoadAsset;
 - (void)playerFailedToLoadAssetWithError:(NSError *)error;
 - (void)playerDidPlay;
 - (void)playerDidPause;
