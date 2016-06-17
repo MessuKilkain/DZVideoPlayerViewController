@@ -8,17 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+
 #if TARGET_OS_TV
-@interface DZProgressIndicatorSlider : UIProgressView
--(void)setValue:(float)value;
--(void)setValue:(float)value animated:(BOOL)animated;
--(float)value;
+@interface DZProgressIndicatorSlider : UIView
 #else
 @interface DZProgressIndicatorSlider : UISlider
 #endif
 
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+- (void)setValue:(float)value;
+- (void)setValue:(float)value animated:(BOOL)animated;
+- (void)setTintColor:(UIColor*)tintColor;
+- (float)value;
 
 - (void)setSecondaryValue:(float)value;
 - (void)setSecondaryTintColor:(UIColor *)tintColor;
+- (float)secondaryValue;
+
+- (void)setProgressViewHeight:(CGFloat)height;
+
+- (void)setTrackColor:(UIColor*)trackColor;
+
 @end
