@@ -213,6 +213,21 @@ static const NSString *PlayerStatusContext;
     }
 }
 
+- (float)rate {
+    if( self.player != nil ) {
+        return [self.player rate];
+    }
+    else {
+        return 0.0;
+    }
+}
+
+- (void)setRate:(float)rate {
+    if( self.player != nil ) {
+        [self.player setRate:rate];
+    }
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

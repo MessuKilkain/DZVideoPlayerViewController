@@ -70,6 +70,10 @@
 
 - (BOOL)isMuted;
 
+- (void)setRate:(float)rat;
+
+- (float)rate;
+
 - (void)toggleFullscreen:(id)sender;
 
 - (void)seek:(DZProgressIndicatorSlider *)slider;
