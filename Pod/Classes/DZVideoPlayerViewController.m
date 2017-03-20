@@ -231,7 +231,11 @@ static const NSString *PlayerStatusContext;
     }
     
     if (self.playerItem) {
-        [self.playerItem removeObserver:self forKeyPath:@"status" context:&ItemStatusContext];
+        @try {
+            [self.playerItem removeObserver:self forKeyPath:@"status" context:&ItemStatusContext];
+        } @catch (NSException *exception) {
+            // NSLog(@"%@", [exception description]);
+        }
     }
     
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:self.videoURL options:nil];
@@ -652,11 +656,23 @@ static const NSString *PlayerStatusContext;
 
 - (void)resignKVO {
     if( self.playerItem != nil ) {
-        [self.playerItem removeObserver:self forKeyPath:@"status" context:&ItemStatusContext];
+        @try {
+            [self.playerItem removeObserver:self forKeyPath:@"status" context:&ItemStatusContext];
+        } @catch (NSException *exception) {
+            // NSLog(@"%@",[exception description]);
+        }
     }
     if( self.player != nil ) {
-        [self.player removeObserver:self forKeyPath:@"rate" context:&PlayerRateContext];
-        [self.player removeObserver:self forKeyPath:@"status" context:&PlayerStatusContext];
+        @try {
+            [self.player removeObserver:self forKeyPath:@"rate" context:&PlayerRateContext];
+        } @catch (NSException *exception) {
+            // NSLog(@"%@",[exception description]);
+        }
+        @try {
+            [self.player removeObserver:self forKeyPath:@"status" context:&PlayerStatusContext];
+        } @catch (NSException *exception) {
+            // NSLog(@"%@",[exception description]);
+        }        
     }
 }
 
