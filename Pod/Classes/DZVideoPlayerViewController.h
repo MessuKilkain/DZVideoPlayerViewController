@@ -80,6 +80,8 @@
 
 - (void)seekToTime:(NSTimeInterval)newPlaybackTime;
 
+- (void)seekToTime:(NSTimeInterval)newPlaybackTime toleranceBefore:(NSTimeInterval)toleranceBefore toleranceAfter:(NSTimeInterval)toleranceAfter;
+
 - (void)startSeeking:(id)sender;
 
 - (void)endSeeking:(id)sender;

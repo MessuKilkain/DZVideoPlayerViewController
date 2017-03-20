@@ -412,6 +412,23 @@ static const NSString *PlayerStatusContext;
     }
 }
 
+- (void)seekToTime:(NSTimeInterval)newPlaybackTime toleranceBefore:(NSTimeInterval)toleranceBefore toleranceAfter:(NSTimeInterval)toleranceAfter
+{
+    if( self.playerItem != nil ) {
+        int timescale = 1;
+        if(
+           [self playerItem] != nil
+           && [[self playerItem] asset] != nil
+           )
+        {
+            timescale = self.playerItem.asset.duration.timescale;
+        }
+        if( self.player != nil ) {
+            [self.player seekToTime:CMTimeMakeWithSeconds(newPlaybackTime, timescale) toleranceBefore:CMTimeMakeWithSeconds(toleranceBefore, timescale) toleranceAfter:CMTimeMakeWithSeconds(toleranceAfter, timescale)];
+        }
+    }
+}
+
 - (void)startSeeking:(id)sender {
     [self stopIdleCountdown];
     self.isSeeking = YES;
