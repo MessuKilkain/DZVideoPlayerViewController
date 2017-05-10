@@ -256,39 +256,46 @@ static const NSString *PlayerStatusContext;
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:self.videoURL options:nil];
     NSString *playableKey = @"playable";
     
+    __weak __typeof(self) weakSelf = self;
     [asset loadValuesAsynchronouslyForKeys:@[playableKey] completionHandler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *error;
-            AVKeyValueStatus status = [asset statusOfValueForKey:playableKey error:&error];
-            
-            if (status == AVKeyValueStatusLoaded) {
-                self.playerItem = [AVPlayerItem playerItemWithAsset:asset];
-                // ensure that this is done before the playerItem is associated with the player
-                [self.playerItem addObserver:self forKeyPath:@"status"
-                                     options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew
-                                     context:&ItemStatusContext];
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            if( nil != strongSelf )
+            {
+                NSError *error;
+                AVKeyValueStatus status = [asset statusOfValueForKey:playableKey error:&error];
                 
-                if( self.player != nil ) {
-                    [self.player replaceCurrentItemWithPlayerItem:self.playerItem];
+                if (status == AVKeyValueStatusLoaded) {
+                    strongSelf.playerItem = [AVPlayerItem playerItemWithAsset:asset];
+                    // ensure that this is done before the playerItem is associated with the player
+                    [strongSelf.playerItem
+                     addObserver:strongSelf
+                     forKeyPath:@"status"
+                     options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew
+                     context:&ItemStatusContext];
+                    
+                    if( strongSelf.player != nil ) {
+                        [strongSelf.player replaceCurrentItemWithPlayerItem:strongSelf.playerItem];
+                    }
+                    else {
+                        [strongSelf setupPlayer];
+                    }
+                    
+                    if( strongSelf.activityIndicatorView ) {
+                        [strongSelf.activityIndicatorView stopAnimating];
+                    }
+                    
+                    [self onSucceedToLoadAsset];
+                    
+                    if (playAutomatically) {
+                        [strongSelf play];
+                    }
                 }
                 else {
-                    [self setupPlayer];
+                    // You should deal with the error appropriately.
+                    NSLog(@"Error, the asset is not playable: %@", error);
+                    [strongSelf onFailedToLoadAssetWithError:error];
                 }
-                
-                if( self.activityIndicatorView ) {
-                  [self.activityIndicatorView stopAnimating];
-                }
-
-                [self onSucceedToLoadAsset];
-
-                if (playAutomatically) {
-                    [self play];
-                }
-            }
-            else {
-                // You should deal with the error appropriately.
-                NSLog(@"Error, the asset is not playable: %@", error);
-                [self onFailedToLoadAssetWithError:error];
             }
         });
         
