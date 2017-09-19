@@ -248,8 +248,9 @@ static const NSString *PlayerStatusContext;
     if (self.playerItem) {
         @try {
             [self.playerItem removeObserver:self forKeyPath:@"status" context:&ItemStatusContext];
-        } @catch (NSException *exception) {
-            // NSLog(@"%@", [exception description]);
+        }
+        @catch(id anException) {
+            //do nothing
         }
     }
     
