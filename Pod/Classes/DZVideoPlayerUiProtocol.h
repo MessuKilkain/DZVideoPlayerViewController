@@ -5,6 +5,9 @@
 #ifndef DZVideoPlayerUiProtocol_h
 #define DZVideoPlayerUiProtocol_h
 
+#import "DZPlayerView.h"
+#import "DZProgressIndicatorSlider.h"
+
 @protocol DZVideoPlayerUiProtocol
 
 -(DZPlayerView *)playerView;
