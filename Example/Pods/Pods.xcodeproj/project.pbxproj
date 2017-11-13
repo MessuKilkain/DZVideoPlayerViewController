@@ -352,6 +352,7 @@
 		B58C219FAAEAD410729510B6 /* NSValue+Expecta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSValue+Expecta.h"; path = "Expecta/NSValue+Expecta.h"; sourceTree = "<group>"; };
 		B7788D66EE201720865C90CA /* SPTExampleGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTExampleGroup.h; path = Specta/Specta/SPTExampleGroup.h; sourceTree = "<group>"; };
 		B8381CEC7876E7E8C16F6CDF /* NSObject+Expecta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+Expecta.h"; path = "Expecta/NSObject+Expecta.h"; sourceTree = "<group>"; };
+		BB9605F21FB9E76900FACD17 /* DZVideoPlayerUiProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZVideoPlayerUiProtocol.h; sourceTree = "<group>"; };
 		BBF79CAC511BDFCB110A471F /* Pods-DZVideoPlayerViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DZVideoPlayerViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BE34DB3D1ECA2049406E08F5 /* Pods-DZVideoPlayerViewController_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DZVideoPlayerViewController_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		BF02051CC3F53AF6134335F7 /* Pods-DZVideoPlayerViewController_Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DZVideoPlayerViewController_Tests-environment.h"; sourceTree = "<group>"; };
@@ -650,6 +651,7 @@
 				149E15F31F41444756BDEB98 /* DZVideoPlayerViewControllerContainerView.h */,
 				4FBE5F719C538180181C3BAB /* DZVideoPlayerViewControllerContainerView.m */,
 				D87B12AC99C9D33EC960AA0F /* DZVideoPlayerViewControllerDelegate.h */,
+				BB9605F21FB9E76900FACD17 /* DZVideoPlayerUiProtocol.h */,
 				E7B70B27FF6621A348A65C6B /* DZVideoPlayerViewController_constants.h */,
 			);
 			path = Classes;

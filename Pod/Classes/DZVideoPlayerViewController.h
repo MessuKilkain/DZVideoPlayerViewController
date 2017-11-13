@@ -17,9 +17,10 @@
 #import "DZPlayerView.h"
 #import "DZProgressIndicatorSlider.h"
 #import "DZVideoPlayerViewControllerContainerView.h"
+#import "DZVideoPlayerUiProtocol.h"
 
 
-@interface DZVideoPlayerViewController : UIViewController
+@interface DZVideoPlayerViewController : UIViewController<DZVideoPlayerUiProtocol>
 @property (weak, nonatomic) id<DZVideoPlayerViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) DZVideoPlayerViewControllerConfiguration *configuration;
